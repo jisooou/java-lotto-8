@@ -19,7 +19,7 @@ public class ConvertToNumber {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }
