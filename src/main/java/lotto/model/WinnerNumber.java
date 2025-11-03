@@ -21,6 +21,11 @@ public class WinnerNumber {
         if (numbers.stream().distinct().count() != WINNER_SIZE) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_NO_DUPLICATE.getMessage());
         }
+        for (int number : numbers) {
+            if (number < LottoNumber.getMin() || number > LottoNumber.getMax()) {
+                throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+            }
+        }
     }
 
     public List<Integer> getNumbers() {
