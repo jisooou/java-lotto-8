@@ -20,22 +20,23 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            PurchasePrice purchasePrice = getPurchasePrice();
-            List<Lotto> lottos = generateAndPrintLotto(purchasePrice);
+        PurchasePrice purchasePrice = getPurchasePrice();
+        List<Lotto> lottos = generateAndPrintLotto(purchasePrice);
 
-            WinnerNumber winnerNumber = getWinnerNumber();
-            BonusNumber bonusNumber = getBonusNumber(winnerNumber);
+        WinnerNumber winnerNumber = getWinnerNumber();
+        BonusNumber bonusNumber = getBonusNumber(winnerNumber);
 
-            printResult(lottos, winnerNumber, bonusNumber, purchasePrice);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            run();
-        }
+        printResult(lottos, winnerNumber, bonusNumber, purchasePrice);
     }
 
     private PurchasePrice getPurchasePrice() {
-        return new PurchasePrice(inputView.readPurchasePrice());
+        while (true) {
+            try {
+                return new PurchasePrice(inputView.readPurchasePrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Lotto> generateAndPrintLotto(PurchasePrice purchasePrice) {
@@ -45,11 +46,23 @@ public class LottoController {
     }
 
     private WinnerNumber getWinnerNumber() {
-        return new WinnerNumber(inputView.readWinningNumber());
+        while (true) {
+            try {
+                return new WinnerNumber(inputView.readWinningNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private BonusNumber getBonusNumber(WinnerNumber winnerNumber) {
-        return new BonusNumber(inputView.readBonusNumber(), winnerNumber);
+        while (true) {
+            try {
+                return new BonusNumber(inputView.readBonusNumber(), winnerNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void printResult(List<Lotto> lottos, WinnerNumber winnerNumber, BonusNumber bonusNumber, PurchasePrice purchasePrice) {
