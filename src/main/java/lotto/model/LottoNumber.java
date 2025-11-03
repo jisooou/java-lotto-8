@@ -3,8 +3,8 @@ package lotto.model;
 import lotto.exception.ErrorCode;
 
 public class LottoNumber {
-    private final static int MIN = 1;
-    private final static int MAX = 45;
+    private static final int MIN = 1;
+    private static final int MAX = 45;
     private final int lottoNumber;
 
     public LottoNumber(int lottoNumber) {
@@ -20,5 +20,13 @@ public class LottoNumber {
 
     public int getLottoNumber() {
         return lottoNumber;
+    }
+
+    public static int getMin() {
+        return MIN;
+    }
+
+    public static int getMax() {
+        return MAX;
     }
 }
